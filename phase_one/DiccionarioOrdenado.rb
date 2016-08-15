@@ -3,7 +3,7 @@ def dictionary_sort
   puts "Escribe una palabra:"
   user_word = gets.chomp
   while user_word != ""
-    store_words << user_word
+    store_words << user_word if user_word != "0" && user_word.to_i == 0 && user_word.strip != "" 
     puts "Escribe otra palabra(o presiona 'enter' para finalizar):"
     user_word = gets.chomp
   end
