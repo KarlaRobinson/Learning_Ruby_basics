@@ -1,0 +1,129 @@
+CodeaCamp03s-Mac-mini:robinson codea_mac_03$ irb
+irb(main):001:0> 3 + 44
+=> 47
+irb(main):002:0> 4 - 56
+=> -52
+irb(main):003:0> a = 33
+=> 33
+irb(main):004:0> a + 5
+=> 38
+irb(main):005:0> "Hello " + "how are you?"
+=> "Hello how are you?"
+irb(main):006:0> array = [3, 4, 5]
+=> [3, 4, 5]
+irb(main):007:0> p array
+[3, 4, 5]
+=> [3, 4, 5]
+irb(main):008:0> puts array
+3
+4
+5
+=> nil
+irb(main):009:0> print
+=> nil
+irb(main):010:0> print array
+[3, 4, 5]=> nil
+irb(main):011:0> inspect array
+ArgumentError: wrong number of arguments (1 for 0)
+	from (irb):11:in `to_s'
+	from (irb):11
+	from /Users/codea_mac_03/.rbenv/versions/2.2.4/bin/irb:11:in `<main>'
+irb(main):012:0> pinspect array
+NoMethodError: undefined method `pinspect' for main:Object
+	from (irb):12
+	from /Users/codea_mac_03/.rbenv/versions/2.2.4/bin/irb:11:in `<main>'
+irb(main):013:0> p inspect array
+ArgumentError: wrong number of arguments (1 for 0)
+	from (irb):13:in `to_s'
+	from (irb):13
+	from /Users/codea_mac_03/.rbenv/versions/2.2.4/bin/irb:11:in `<main>'
+irb(main):014:0> array.inspect
+=> "[3, 4, 5]"
+irb(main):015:0> p inspect
+"main"
+=> "main"
+irb(main):016:0> p array
+[3, 4, 5]
+=> [3, 4, 5]
+irb(main):017:0> a = true
+=> true
+irb(main):018:0> !a
+=> false
+irb(main):019:0> a
+=> true
+irb(main):020:0> a = !a
+=> false
+irb(main):021:0> a
+=> false
+irb(main):022:0> Math.sqrt(7,690,939,204)
+ArgumentError: wrong number of arguments (4 for 1)
+	from (irb):22:in `sqrt'
+	from (irb):22
+	from /Users/codea_mac_03/.rbenv/versions/2.2.4/bin/irb:11:in `<main>'
+irb(main):023:0> require 'Math'
+^[[A^[[A^[[B^[[B
+LoadError: cannot load such file -- Math
+	from /Users/codea_mac_03/.rbenv/versions/2.2.4/lib/ruby/2.2.0/rubygems/core_ext/kernel_require.rb:54:in `require'
+	from /Users/codea_mac_03/.rbenv/versions/2.2.4/lib/ruby/2.2.0/rubygems/core_ext/kernel_require.rb:54:in `require'
+	from (irb):23
+	from /Users/codea_mac_03/.rbenv/versions/2.2.4/bin/irb:11:in `<main>'
+irb(main):024:0> 
+irb(main):025:0* Math.sqrt(7,690,939,204)require 'math'
+SyntaxError: (irb):25: syntax error, unexpected tIDENTIFIER, expecting end-of-input
+Math.sqrt(7,690,939,204)require 'math'
+                               ^
+	from /Users/codea_mac_03/.rbenv/versions/2.2.4/bin/irb:11:in `<main>'
+irb(main):026:0> require 'math'
+LoadError: cannot load such file -- math
+	from /Users/codea_mac_03/.rbenv/versions/2.2.4/lib/ruby/2.2.0/rubygems/core_ext/kernel_require.rb:54:in `require'
+	from /Users/codea_mac_03/.rbenv/versions/2.2.4/lib/ruby/2.2.0/rubygems/core_ext/kernel_require.rb:54:in `require'
+	from (irb):26
+	from /Users/codea_mac_03/.rbenv/versions/2.2.4/bin/irb:11:in `<main>'
+irb(main):027:0> require "Math"
+LoadError: cannot load such file -- Math
+	from /Users/codea_mac_03/.rbenv/versions/2.2.4/lib/ruby/2.2.0/rubygems/core_ext/kernel_require.rb:54:in `require'
+	from /Users/codea_mac_03/.rbenv/versions/2.2.4/lib/ruby/2.2.0/rubygems/core_ext/kernel_require.rb:54:in `require'
+	from (irb):27
+	from /Users/codea_mac_03/.rbenv/versions/2.2.4/bin/irb:11:in `<main>'
+irb(main):028:0> ^C
+irb(main):028:0> require "Math"
+LoadError: cannot load such file -- Math
+	from /Users/codea_mac_03/.rbenv/versions/2.2.4/lib/ruby/2.2.0/rubygems/core_ext/kernel_require.rb:54:in `require'
+	from /Users/codea_mac_03/.rbenv/versions/2.2.4/lib/ruby/2.2.0/rubygems/core_ext/kernel_require.rb:54:in `require'
+	from (irb):28
+	from /Users/codea_mac_03/.rbenv/versions/2.2.4/bin/irb:11:in `<main>'
+irb(main):029:0> Math.sqrt(9)
+=> 3.0
+irb(main):030:0> Math.sqrt(7_690_939_204)
+=> 87698.0
+irb(main):031:0> def shout
+irb(main):032:1> 
+irb(main):033:1* 
+irb(main):034:1* def shout(string)
+irb(main):035:2> string.downcase
+irb(main):036:2> end
+irb(main):037:1> shout("Hello")
+irb(main):038:1> p shout("Hello")
+irb(main):039:1> def shout(string)
+irb(main):040:2> string.downcase!
+irb(main):041:2> end
+irb(main):042:1> p shout("Hello")
+irb(main):043:1> 
+SyntaxError: (irb):42: syntax error, unexpected end-of-input, expecting keyword_end
+	from /Users/codea_mac_03/.rbenv/versions/2.2.4/bin/irb:11:in `<main>'
+CodeaCamp03s-Mac-mini:robinson codea_mac_03$ irb
+irb(main):001:0> def shout(string)
+irb(main):002:1> p string
+irb(main):003:1> end
+=> :shout
+irb(main):004:0> shout("Hello")
+"Hello"
+=> "Hello"
+irb(main):005:0> def shout(string)
+irb(main):006:1> p string.downcase
+irb(main):007:1> end
+=> :shout
+irb(main):008:0> shout("Hello")
+"hello"
+=> "hello"
+irb(main):009:0> 
