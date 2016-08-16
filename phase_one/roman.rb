@@ -5,7 +5,7 @@ def to_roman(n)
 
     holder = ""
     i = n.to_s.length
-  n.to_s.split("").map{|elem|elem.to_i}.each do |dig|
+  n.to_s.split("").map{ |elem|elem.to_i}.each do |dig|
     i -= 1
     if dig == 9
       holder << sm[i] + big[i]
@@ -14,7 +14,7 @@ def to_roman(n)
       (3 - (8 - dig)).times{ holder << sm[i]}
     elsif dig == 4
       holder << sm[i] + med[i]
-    else 
+    else
       dig.times{ holder << sm[i]}
     end
   end
