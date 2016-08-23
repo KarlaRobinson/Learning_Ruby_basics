@@ -6,6 +6,7 @@
 #   SET the consonants at the end of the word and add "ay"
 # ENDIF
 # RETURN the pig-latin word
+
 def pig_latin_word(word)
 	if word[0].downcase =~ /[aeiou]/
 		word << "way" 
@@ -31,6 +32,8 @@ p pig_latin_word("I") == "Iway"
 # ENDIF
 # END.EACH
 # RETURN the pig-latin word
+
+
 def pig_latin_sentence(sentence)
 	new_sentence = ""
 	sentence.split.each do |word|
