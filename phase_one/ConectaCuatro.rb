@@ -1,78 +1,135 @@
-# El tablero esta formado por 6 filas y 7 columnas. Cada jugador dispone de 21 fichas de un color.2 Por turnos, los jugadores deben introducir una ficha en la columna que prefieran (siempre que no esté completa) y ésta caerá a la posición más baja.
-
-# Gana la partida el primero que consiga alinear cuatro fichas consecutivas de un mismo color en horizontal, vertical o diagonal.
-
-# alt text
-
-# Objetivos Académicos
-# Distribución de responsabilidades
-# Implementar mejores interfaces
-# Modelar un juego de la vida real
-# # Actividades
-# La primera implementación de tu programa será totalmente automatizada, esto quiere decir que de manera aleatoria el programa eligirá donde tira cada participante su ficha.
-
-# Piensa como representaras el color de las fichas o las fichas mismas para que sean diferenciadas tanto interna como externamente.
-
-# La parte más complicada de este ejercicio es revisar después de que cada participante tira una ficha si existe la conexión de cuatro fichas vertical, horizontal o diagonalmente. Lo bueno es que ya realizaste algo similar y mas complicado en el reto de la Sopa de Letras.
-
-# Estos son algunos de los métodos que deberá tener tu clase ConectFour:
-
-# print_board # imprime y actualiza la representación del tablero.
-# drop_chip!(player) # determina una columna y tira la ficha de un jugador especifico.
-# finished? # regresa true si un jugador conecta cuatro o si se acabo el tablero, false de otra manera.
-# winner # regresa el nombre de la persona que gano el juego.
-# Print Board
-# Deberás implementar como primer paso la función de print_board.
-
-# Tiro de ficha y Representación dinámica
-# Como segundo paso deberás modelar el turno de cada participante drop_chip!.
-
-# Tu programa deberá modelar como es que van cayendo las fichas. Utiliza estos métodos para mejorar la interfaz de tu programa, juega con ellos para entender como funcionan:
-
-# # Duerme la ejecución del programa, para retrasar un proceso. 
-# sleep()
-
-# Finished?
-# Por último deberás de crear el método que revisará después de cada turno si es que existe un ganador, esto es si hay cuatro fichas juntas en cualquier dirección.
-
-# Extra
-# Ahora dale vida a tu juego y deja que dos usuarios puedan elegir las columnas y realmente jugar!!!
-
 class ConnectFour
 
-	def initialize
-	create_board	
+	def initialize	
+	@cols = Array.new(7){["0e", "e1", "e2", "3e", "4e", "5e"]}
 	end
 
-	def create_board
-
+	def rows
+		rows = []
+		for i in 0..5
+			row_holder = []
+			@cols.each do |col|
+				row_holder << col[i]
+			end
+			rows << row_holder
+		end
+		rows
 	end
 
-	def complete_board
+	def print_board	
+		rows.each do |row|
+			row.each do |cell|
+				if cell.include? ("e")
+					print " |"
+				else
+					print "#{cell}|"
+				end
+			end
+			puts
+		end
+		puts "0|1|2|3|4|5|6|"
 	end
 
-	def four_in_a_row?
+	def diagonals
+		# num = @cols.length + @cols[0] - 1
+		# @cols.each do |col|
+		# 	col.each do |cell|
+
+		# 	end
+		# end
 	end
 
-	def four_in_a_col?
+	def drop_chip!(color, col_num = rand(0..6))
+		completed = 0
+		until completed == 1
+			5.downto(0) do |i|
+				if @cols[col_num][i].include? ("#{i}")
+					@cols[col_num][i] = color
+					completed = 1
+				else
+					completed = 0
+				end
+			break if completed == 1
+			end
+			col_num = rand(0..6)
+		end
+		print_board
+		puts
+	end
+
+	def four_in_a_row?(color)
+		value = false
+		rows.each do |row|
+			if row.join.include? (color * 3)
+				value = true
+				break
+			end
+		end
+		value
+	end
+
+	def four_in_a_col?(color)
+		value = false
+		@cols.each do |col|
+			if col.join.include? (color * 4)
+				value = true
+				break
+			end
+		end
+		value
 	end
 
 	def four_in_a_diagonal?	
 	end
 
-	# Clear the screen
+	def finished?(color)
+		four_in_a_row?(color) || four_in_a_col?(color) == true
+	end
+
+	def auto_play
+		print_board
+		until finished?("B") do
+		drop_chip!("W")
+		break if finished?("W")
+		drop_chip!("B")
+		end
+		p winner
+	end
+
+	def winner
+		finished?("B") ? "Team Black is the winner!" : "Team White is the winner!"
+	end
+
+	def interactive
+		puts
+		puts
+		puts "_________________________________________________________________________"
+		puts "Welcome to Connect Four!"
+		puts "This is a two person game where each player adds a token of their color (Black, or White) to the column of their choice. The first player to get 4 token's of their color horizontally, vertically or diagonally in a row, wins! Black goes first."
+		puts "_________________________________________________________________________"
+		until finished?("W")
+			puts
+			print_board
+			sleep(1)
+			puts "Player Black's Turn: in which column do you want to add your piece?"
+			move = gets.chomp
+			sleep(0.5)
+			drop_chip!("B", move.to_i)
+			sleep(1)
+			break if finished?("B")
+			puts "Player White's Turn: in which column do you want to add your piece?"
+			move = gets.chomp
+			sleep(0.5)
+			drop_chip!("W", move.to_i)
+		end
+		puts "Nice work! #{winner}"
+	end
+
 	def clear_screen!
 	  print "\e[2J"
 	end
-
-	# Moves cursor to the top left of the terminal
-	def move_to_home!
-	  print "\e[H"
-	end
-
-	# Use "reputs" to print over a previously printed line,
-	# assuming the cursor is positioned appropriately.
-	def reputs(str = '')
-	  puts "\e[0K" + str
-	end
 end
+
+game = ConnectFour.new
+game.auto_play
+game.interactive
